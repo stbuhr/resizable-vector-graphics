@@ -1,0 +1,71 @@
+<svg
+  [attr.width]="width()"
+  [attr.height]="width()"
+  viewBox="-150 -150 300 300"
+  class="resizable-graphics"
+>
+  <rect x="-150" y="-150" width="300" height="300" fill="rgb(240, 240, 240)" />
+  <text
+    x="-150"
+    y="-135"
+    text-anchor="start"
+    alignment-baseline="bottom"
+    [attr.font-size]="fixedFontSize()"
+  >
+    Text with fixed font size (Real size is {{ fixedFontSize() }}).
+  </text>
+  <text
+    x="-150"
+    y="-120"
+    text-anchor="start"
+    alignment-baseline="bottom"
+    [attr.font-size]="responsiveFontSize()"
+  >
+    Text with responsive font size (Real size is {{ responsiveFontSize() }}
+  </text>
+  <text
+    x="-150"
+    y="-105"
+    text-anchor="start"
+    alignment-baseline="bottom"
+    font-size="15"
+  >
+    Text with stretched font size (Real size is 15).
+  </text>
+
+  <circle
+    cx="0"
+    cy="0"
+    r="100"
+    fill="rgb(255, 255, 255)"
+    stroke="rgb(0, 0, 0)"
+    stroke-width="2"
+  />
+
+  <circle
+    cx="0"
+    cy="0"
+    r="80"
+    fill="rgb(255, 255, 255)"
+    stroke="rgb(0, 0, 0)"
+    [attr.stroke-width]="responsiveStrokeWidth() * 2"
+  />
+
+  <circle
+    cx="0"
+    cy="0"
+    r="60"
+    fill="rgb(255, 255, 255)"
+    stroke="rgb(0, 0, 0)"
+    stroke-width="1"
+  />
+
+  <circle
+    cx="0"
+    cy="0"
+    r="40"
+    fill="rgb(255, 255, 255)"
+    stroke="rgb(0, 0, 0)"
+    [attr.stroke-width]="responsiveStrokeWidth()"
+  />
+</svg>

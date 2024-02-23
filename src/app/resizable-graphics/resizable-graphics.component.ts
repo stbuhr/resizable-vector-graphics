@@ -5,21 +5,38 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
+  computed,
   signal,
 } from '@angular/core';
 import { Observable, Subscription, fromEvent } from 'rxjs';
+
+const viewboxWidth = 300;
 
 @Component({
   selector: 'app-resizable-graphics',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './resizable-graphics.component.html',
+  templateUrl: './resizable-graphics.component.svg',
   styleUrl: './resizable-graphics.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResizableGraphicsComponent implements OnInit, OnDestroy {
-  width = signal(500);
-  height = signal(500);
+  width = signal(viewboxWidth);
+  height = signal(viewboxWidth);
+
+  fixedFontSize = computed(() => (15 * viewboxWidth) / this.width());
+  responsiveFontSize = computed(() => {
+    const vw = Math.max(
+      document.documentElement.clientWidth || 0,
+      window.innerWidth || 0
+    );
+    const minSize = (15 * viewboxWidth) / this.width();
+    const maxSize = (20 * viewboxWidth) / this.width();
+    const calcSize = (vw * 0.02 + 2) * (viewboxWidth / this.width());
+    return Math.min(maxSize, Math.max(minSize, calcSize));
+  });
+
+  responsiveStrokeWidth = computed(() => viewboxWidth / this.width());
 
   resizeObservable$: Observable<Event> | undefined;
   resizeSubscription$: Subscription | undefined;
