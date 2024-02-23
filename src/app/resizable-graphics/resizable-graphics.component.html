@@ -1,0 +1,17 @@
+<svg
+  [attr.width]="width()"
+  [attr.height]="width()"
+  viewBox="-150 -150 300 300"
+  class="resizable-graphics"
+>
+  <rect x="-150" y="-150" width="300" height="300" fill="rgb(240, 240, 240)" />
+  <text
+    x="0"
+    y="0"
+    text-anchor="middle"
+    alignment-baseline="middle"
+    fill="black"
+  >
+    Width is {{ width() }}
+  </text>
+</svg>
